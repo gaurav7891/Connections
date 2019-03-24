@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efeff4"
+    tools:context=".ui.info.InfoFragment">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#efeff4"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:text="FOLLOWERS"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rect"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="3sp"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        android:padding="16dp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:text="Followers are those users who have accepted your invitation to Handzap and that you may receive rewards every time they use Handzap. Followers have no access to your account and can’t see or follow your profile info, Job Posts or Job Searches." />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#efeff4"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:text="FAVORITES"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rect"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="3sp"
+        android:padding="16dp"
+        android:text="Favorites are those users that you liked in the past and that you can always invite to your job posts. Favorites have no access to your account and can’t see or follow your profile info, Job Posts or Job Searches unless you invite any of them to an existing Job Post."
+        android:textColor="#757575"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#efeff4"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:text="BLOCKED"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rect"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="3sp"
+        android:padding="16dp"
+        android:text="Blocked are those users that can’t send you messages or calls. Blocked users have no access to your account as well and can’t see or follow your profile info, Job Posts or Job Searches."
+        android:textColor="#757575"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Connections</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_txt_info">Info</string>
+    <string name="cd_image">image</string>
+    <string name="txt_unfavorite">Unfavorite</string>
+    <string name="txt_remove">Remove</string>
+    <string name="txt_unblock">Unblock</string>
+    <string name="txt_info">Info</string>
+    <string name="txt_roosvelt_del">Roosvelt Del</string>
+    <string name="cd_image_of_rating_star">image of rating star</string>
+    <string name="txt_rating">3.8</string>
+    <string name="txt_tasks_completed">264 Tasks</string>
+    <string name="cd_image_of_task_completed">image of task completed</string>
 </resources>

@@ -21,6 +21,7 @@ class ConnectionsAdapter(private var context: Context, private val mConnectionLi
     internal var selectedItemPosition = -1
     private var listener: SelectionCountListener
     private var isSelectingMode: Boolean = false
+    var isItemRemoved: Boolean = false
 
     init {
         this.listener = context as SelectionCountListener
@@ -48,6 +49,7 @@ class ConnectionsAdapter(private var context: Context, private val mConnectionLi
         } else {
             holder.imgCheckDisabled.visibility = View.GONE
         }
+
 
         holder.imgCheckDisabled.setOnClickListener {
             connections.isSelected = true

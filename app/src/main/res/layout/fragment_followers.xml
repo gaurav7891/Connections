@@ -21,7 +21,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Long press to select and remove." />
+        android:text="@string/txt_long_press_to_select_and_remove" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#67a6b1c6"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewFollowers"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

@@ -2,12 +2,18 @@ package gray.dev.connections.ui.blocked
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import gray.dev.connections.R
+import gray.dev.connections.model.Connections
 import gray.dev.connections.ui.ConnectionsAdapter
+import gray.dev.connections.ui.ConnectionsViewModel
 import gray.dev.connections.utils.Constants
 import gray.dev.connections.utils.RawData
 import kotlinx.android.synthetic.main.fragment_blocked.*
@@ -31,6 +37,8 @@ class BlockedFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var mConnectionAdapter: ConnectionsAdapter? = null
+    private var viewModel : ConnectionsViewModel?=null
+    private var list = ArrayList<Connections>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +46,27 @@ class BlockedFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        viewModel = ViewModelProviders.of(this).get(ConnectionsViewModel::class.java)
         return inflater.inflate(R.layout.fragment_blocked, container, false)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.unblock) {
+            viewModel?.removeItems(list)
+            viewModel?.updatedList?.observe(this, Observer<ArrayList<Connections>> { removedListItems->
+                list = removedListItems
+                mConnectionAdapter?.notifyDataSetChanged()
+            })
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -52,7 +75,8 @@ class BlockedFragment : Fragment() {
     }
 
     private fun initUi() {
-        mConnectionAdapter = ConnectionsAdapter(activity!!, RawData.getConnectionsRawData(),R.color.blocked_rate_color, Constants.BLOCKED)
+        list = RawData.getConnectionsRawData()
+        mConnectionAdapter = ConnectionsAdapter(activity!!, list,R.color.blocked_rate_color, Constants.BLOCKED)
         recyclerViewBlocked.adapter = mConnectionAdapter
         recyclerViewBlocked.itemAnimator = DefaultItemAnimator()
     }

@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import gray.dev.connections.R
 import gray.dev.connections.model.Connections
 import gray.dev.connections.ui.ConnectionsAdapter
+import gray.dev.connections.ui.ConnectionsViewModel
 import gray.dev.connections.utils.Constants
 import gray.dev.connections.utils.RawData
 import kotlinx.android.synthetic.main.fragment_followers.*
@@ -32,6 +35,7 @@ class FollowersFragment : Fragment() {
     private var param2: String? = null
     private var mConnectionAdapter: ConnectionsAdapter? = null
     private var list = ArrayList<Connections>()
+    private var viewModel: ConnectionsViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,29 +49,23 @@ class FollowersFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-       // setHasOptionsMenu(true)
-        val toolbar  = activity?.findViewById<Toolbar>(R.id.toolbar)
-        toolbar?.setOnMenuItemClickListener {
-            if (it.itemId == R.id.remove) {
-                removeItems()
-            }
-            return@setOnMenuItemClickListener true
-        }
+        // setHasOptionsMenu
+        viewModel = ViewModelProviders.of(this).get(ConnectionsViewModel::class.java)
         return inflater.inflate(R.layout.fragment_followers, container, false)
     }
 
-    private fun removeItems() {
-        val iterator : Iterator<Connections> = list.iterator()
-        val connectionListRemoved  = ArrayList<Connections>()
-        while (iterator.hasNext()){
-            val connections = iterator.next()
-            if (connections.isSelected){
-                connectionListRemoved.add(connections)
-            }
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (item?.itemId == R.id.remove) {
+            println("Gaurav")
+            viewModel?.removeItems(list)
+            viewModel?.updatedList?.observe(this, Observer<ArrayList<Connections>> { removedListItems ->
+                list = removedListItems
+                mConnectionAdapter?.notifyDataSetChanged()
+            })
+            return true
         }
-        list.removeAll(connectionListRemoved)
-        mConnectionAdapter?.notifyDataSetChanged()
-        System.out.println(list)
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -82,7 +80,6 @@ class FollowersFragment : Fragment() {
         recyclerViewFollowers.adapter = mConnectionAdapter
         recyclerViewFollowers.itemAnimator = DefaultItemAnimator()
     }
-
 
     companion object {
         /**

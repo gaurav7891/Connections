@@ -13,7 +13,7 @@ import gray.dev.connections.ui.info.InfoFragment
 import gray.dev.connections.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, ConnectionsAdapter.SelectionCountListener {
+class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, ConnectionsAdapter.SelectionCountListener{
 
     private var menuId: Int? = null
 
@@ -60,37 +60,14 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, Conne
                 showInfoToolTip()
                 return true
             }
-            R.id.unblock -> {
-                unblockConnection()
-                return true
-            }
-            R.id.unfavorite -> {
-                unFavoriteConnection()
-                return true
-            }
-            R.id.remove -> {
-                removeConnection()
-                return true
-            }
             android.R.id.home -> {
                 onBackPressed()
                 return true
             }
 
+
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    private fun removeConnection() {
-       // removeListener?.onRemoveConnection()
-    }
-
-    private fun unFavoriteConnection() {
-
-    }
-
-    private fun unblockConnection() {
-
     }
 
     /**
@@ -116,6 +93,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, Conne
         menuId = R.menu.main_menu
         invalidateOptionsMenu()
     }
+
 
     override fun onConnectionItemSelected(count: Int, tab: String) {
         toolbar.title = "$count Selected"

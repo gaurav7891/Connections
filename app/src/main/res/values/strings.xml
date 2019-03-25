@@ -14,4 +14,7 @@
     <string name="txt_rating">3.8</string>
     <string name="txt_tasks_completed">264 Tasks</string>
     <string name="cd_image_of_task_completed">image of task completed</string>
+    <string name="txt_long_press_to_select_and_remove">Long press to select and remove.</string>
+    <string name="txt_long_press_to_select_and_unfavorite">Long press to select and unfavorite.</string>
+    <string name="txt_long_press_to_select_and_unblock">Long press to select and unblock.</string>
 </resources>

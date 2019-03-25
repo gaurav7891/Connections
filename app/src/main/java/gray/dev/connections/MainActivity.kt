@@ -7,14 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayout
-import gray.dev.connections.operations.RemoveListener
-import gray.dev.connections.operations.UnBlockListener
-import gray.dev.connections.operations.UnFavoriteListener
 import gray.dev.connections.ui.ConnectionsAdapter
 import gray.dev.connections.ui.ViewPagerAdapter
-import gray.dev.connections.ui.blocked.BlockedFragment
-import gray.dev.connections.ui.favorites.FavoritesFragment
-import gray.dev.connections.ui.followers.FollowersFragment
 import gray.dev.connections.ui.info.InfoFragment
 import gray.dev.connections.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,9 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, ConnectionsAdapter.SelectionCountListener {
 
     private var menuId: Int? = null
-    private var removeListener: RemoveListener? = null
-    private var unblockListener: UnBlockListener? = null
-    private var unFavoriteListener: UnFavoriteListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +42,6 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, Conne
         tabs.addTab(tabs.newTab().setText("Blocked"))
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, tabs.tabCount)
         viewpager.adapter = viewPagerAdapter
-        removeListener = viewPagerAdapter.getItem(0) as FollowersFragment
-        unFavoriteListener = viewPagerAdapter.getItem(1) as FavoritesFragment
-        unblockListener = viewPagerAdapter.getItem(2) as BlockedFragment
     }
 
     private fun setListener() {

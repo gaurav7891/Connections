@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import gray.dev.connections.R
 import gray.dev.connections.model.Connections
-import gray.dev.connections.operations.RemoveListener
 import gray.dev.connections.ui.ConnectionsAdapter
 import gray.dev.connections.utils.Constants
 import gray.dev.connections.utils.RawData
@@ -27,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class FollowersFragment : Fragment(),RemoveListener {
+class FollowersFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -84,8 +83,6 @@ class FollowersFragment : Fragment(),RemoveListener {
         recyclerViewFollowers.itemAnimator = DefaultItemAnimator()
     }
 
-    override fun onRemoveConnection() {
-    }
 
     companion object {
         /**

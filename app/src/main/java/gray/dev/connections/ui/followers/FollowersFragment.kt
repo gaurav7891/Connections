@@ -1,18 +1,16 @@
 package gray.dev.connections.ui.followers
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DefaultItemAnimator
-
 import gray.dev.connections.R
 import gray.dev.connections.model.Connections
+import gray.dev.connections.operations.RemoveListener
 import gray.dev.connections.ui.ConnectionsAdapter
 import gray.dev.connections.utils.Constants
 import gray.dev.connections.utils.RawData
-import gray.dev.connections.utils.RecyclerItemClickListener
 import kotlinx.android.synthetic.main.fragment_followers.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class FollowersFragment : Fragment() {
+class FollowersFragment : Fragment(),RemoveListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -42,19 +40,42 @@ class FollowersFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+       // setHasOptionsMenu(true)
+        val toolbar  = activity?.findViewById<Toolbar>(R.id.toolbar)
+        toolbar?.setOnMenuItemClickListener {
+            if (it.itemId == R.id.remove) {
+                removeItems()
+            }
+            return@setOnMenuItemClickListener true
+        }
         return inflater.inflate(R.layout.fragment_followers, container, false)
+    }
+
+    private fun removeItems() {
+        val iterator : Iterator<Connections> = list.iterator()
+        val connectionListRemoved  = ArrayList<Connections>()
+        while (iterator.hasNext()){
+            val connections = iterator.next()
+            if (connections.isSelected){
+                connectionListRemoved.add(connections)
+            }
+        }
+        list.removeAll(connectionListRemoved)
+        mConnectionAdapter?.notifyDataSetChanged()
+        System.out.println(list)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initUi()
-        setListener()
     }
+
 
     private fun initUi() {
         list = RawData.getConnectionsRawData()
@@ -63,13 +84,7 @@ class FollowersFragment : Fragment() {
         recyclerViewFollowers.itemAnimator = DefaultItemAnimator()
     }
 
-    private fun setListener() {
-        recyclerViewFollowers.addOnItemTouchListener(RecyclerItemClickListener(activity!!, object : RecyclerItemClickListener.OnItemClickListener {
-            override fun onItemClick(view: View, position: Int) {
-
-            }
-
-        }))
+    override fun onRemoveConnection() {
     }
 
     companion object {

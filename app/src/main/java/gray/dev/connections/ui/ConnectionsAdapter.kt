@@ -15,7 +15,7 @@ import gray.dev.connections.model.Connections
 import kotlinx.android.synthetic.main.item_connection_layout.view.*
 
 class ConnectionsAdapter(private var context: Context, private val mConnectionList: List<Connections>,
-                         private val rateColor: Int,private val tab:String) : RecyclerView.Adapter<ConnectionsAdapter.ConnectionViewHolder>() {
+                         private val rateColor: Int, private val tab: String) : RecyclerView.Adapter<ConnectionsAdapter.ConnectionViewHolder>() {
 
     private var selectedItemCount = 0
     internal var selectedItemPosition = -1
@@ -41,7 +41,7 @@ class ConnectionsAdapter(private var context: Context, private val mConnectionLi
         holder.txtRating.text = connections.rating.toString()
         holder.txtTitle.text = connections.name
         holder.txtTaskCount.text = connections.taskCompleted.toString() + " Tasks"
-        holder.rlRating.setBackgroundColor(rateColor)
+        holder.rlRating.setBackgroundResource(rateColor)
 
         if (isSelectingMode) {
             holder.imgCheckDisabled.visibility = View.VISIBLE
@@ -56,7 +56,7 @@ class ConnectionsAdapter(private var context: Context, private val mConnectionLi
                 holder.imgCheckEnabled.visibility = View.VISIBLE
                 holder.itemParent.setBackgroundResource(R.drawable.selected_rect)
                 selectedItemCount += 1
-                listener.onConnectionItemSelected(selectedItemCount,tab)
+                listener.onConnectionItemSelected(selectedItemCount, tab)
             }
         }
 
@@ -67,7 +67,7 @@ class ConnectionsAdapter(private var context: Context, private val mConnectionLi
                 holder.imgCheckEnabled.visibility = View.GONE
                 holder.itemParent.setBackgroundResource(0)
                 selectedItemCount -= 1
-                listener.onConnectionItemSelected(selectedItemCount,tab)
+                listener.onConnectionItemSelected(selectedItemCount, tab)
             }
         }
 
@@ -93,6 +93,6 @@ class ConnectionsAdapter(private var context: Context, private val mConnectionLi
     }
 
     interface SelectionCountListener {
-        fun onConnectionItemSelected(count: Int,tab:String)
+        fun onConnectionItemSelected(count: Int, tab: String)
     }
 }

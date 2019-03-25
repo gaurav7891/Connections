@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import gray.dev.connections.R
+import gray.dev.connections.operations.UnFavoriteListener
 import gray.dev.connections.ui.ConnectionsAdapter
 import gray.dev.connections.utils.Constants
 import gray.dev.connections.utils.RawData
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_favorites.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -50,6 +53,8 @@ class FavoritesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         initUi()
     }
+
+
 
     private fun initUi() {
         mConnectionAdapter = ConnectionsAdapter(activity!!, RawData.getConnectionsRawData(), R.color.favorite_rate_color, Constants.FAVORITES)
